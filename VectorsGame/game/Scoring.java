@@ -52,7 +52,6 @@ public class Scoring {
              targetLength >= 3;
              targetLength--) {
 
-            // Horizontal
             for (int row = 0; row < 8; row++) {
                 
             	array = new char[8];
@@ -63,7 +62,6 @@ public class Scoring {
                 points += scoreSequences(array, token, row, 0, 0, 1, targetLength);
             }
 
-            // Vertical
             for (int col = 0; col < 8; col++) {
                 
             	array = new char[8];
@@ -74,7 +72,6 @@ public class Scoring {
                 points += scoreSequences(array, token, 0, col, 1, 0, targetLength);
             }
 
-            // Top-left to bottom-right
             for (int col = 0; col < 8; col++) {
                 points += checkDiagonal(board, 0, col, 1, 1, token, targetLength);
             }
@@ -82,7 +79,6 @@ public class Scoring {
                 points += checkDiagonal(board, row, 0, 1, 1, token, targetLength);
             }
             
-            // Top-right to bottom-left
             for (int col = 0; col < 8; col++) {
                 points += checkDiagonal(board, 0, col, 1, -1, token, targetLength);
             }
