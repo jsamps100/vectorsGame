@@ -35,7 +35,6 @@ public class Vectors {
         player = new Player(name, 'X');
         computer = new Player("Computer", 'C');
 
-        // Ask for the number of rounds.
         System.out.print("Enter number of rounds (Default 20): ");
         String choice = input.nextLine().trim();
         if (!choice.isEmpty()) {
@@ -50,7 +49,7 @@ public class Vectors {
                 System.out.println("Invalid input. Using 20 rounds.");
             }
         }
-        // Main game loop.
+    
        
         for (int round = 1; round <= totalRounds; round++) {
         	int playerPoints;
@@ -60,10 +59,10 @@ public class Vectors {
             board.displayBoard();
             playerTurn();
             computerTurn();
-            // Calculate points after both moves.
+            
             playerPoints = scoring.calculatePoints(board, player.getToken());
             computerPoints = scoring.calculatePoints(board, computer.getToken());
-            // Update player scores.
+            
             player.addPoints(playerPoints);
             computer.addPoints(computerPoints);
             System.out.println();
@@ -99,7 +98,7 @@ public class Vectors {
                 continue;
             }
 
-            // Board uses x = column and y = row.
+            
             if (board.isValidMove(col, row)) {
                 board.placeMove(col, row, Board.playerId.human);
                 break;
@@ -112,8 +111,7 @@ public class Vectors {
     
     public void computerTurn() {
         int[] move = ai.chooseMove(board);
-        // AI returns {row, col}.
-        // Board expects {column, row}.
+       
         int[] coords = {move[1], move[0]};
         board.aiPlaceMove(coords, Board.playerId.comp);
         System.out.println("Computer(C) Turn (Row Col): " + move[0] + " " + move[1]);
@@ -153,7 +151,7 @@ public class Vectors {
         } else {
             System.out.println("It's a Tie!");
         }
-        // Check whether the final score is a new high score.
+
         highscores.checkHighScore(player.getName(), finalScore);
         System.out.println("**************************************");
         System.out.println("High Score: "+ highscores.getName() + " - "+ highscores.getHighScore());
